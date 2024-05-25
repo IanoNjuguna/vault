@@ -1,0 +1,162 @@
+/* Copyright 2015 The Chromium Authors. All rights reserved.
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file */
+
+html {
+  /* The viewer implements a custom pinch zoom. */
+  touch-action: pan-x pan-y;
+
+  /* This, along with similar style in OOPIF, helps ensure scrollbar colors 
+	inside OOPIF are updated to match the theme and color-schemes in both frames 
+	are same. The latter ensures the embedded content (the <embed>) is rendered on 
+	transparent canvas and does not render its own background color. */
+  color-scheme: light-dark;
+}
+
+body {
+  background-color: #e6e6e6;
+  color: #101010;
+  line-height: 154%;
+  margin: 0;
+  overscroll-behavior: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #333;
+    color: #fff;
+  }
+}
+
+#toolbar {
+  position: fixed;
+  width: 100%;
+  z-index: 4;
+  /* This prevents touch actions done over toolbar (or any child elements such 
+	as flyouts/overflow menu) from scrolling/zooming the PDF content. */
+  touch-action: none;
+}
+
+#document-container {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  line-height: 0;
+}
+
+#modal-root {
+  position: absolute;
+  width: 100%;
+  z-index: 4;
+}
+
+#plugin {
+  position: fixed;
+  min-width: 100%;
+  user-select: none;
+}
+
+#embed-border {
+  border: 2px #adadad solid;
+  border-radius: 2px;
+  pointer-events: none;
+  position: fixed;
+  visibility: hidden;
+  z-index: 4;
+}
+
+@media (prefers-color-scheme: dark) {
+  #embed-border {
+    border: 2px #787878 solid;
+  }
+}
+
+#sizer {
+  position: absolute;
+  z-index: 0;
+}
+
+#layout-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  transition: opacity 400ms;
+  transform-origin: 0 0;
+}
+
+#layout-container .pagerect {
+  background-color: #fff;
+  position: absolute;
+  background-size: cover;
+}
+
+#password-protected-disable-message-div {
+  text-align: center;
+  padding-top: 33%;
+}
+
+@media (prefers-color-scheme: dark) {
+  #layout-container .pagerect {
+    box-shadow: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  #layout-container .pagerect {
+    box-shadow: #bbb 0 2px 6px 1px;
+    clip-path: inset(var(--shadow-clip-rect));
+  }
+}
+
+@media (max-width: 350px) {
+  #toolbar {
+    display: none;
+  }
+}
+
+@media (-ms-high-contrast: active) {
+  #layout-container .pagerect {
+    -ms-high-contrast-adjust: none;
+    background-color: Window;
+    outline: 5px solid WindowText;
+  }
+}
+
+/* These rules are active only in PDF fullscreen mode */
+html.fullscreen-mode {
+  overflow: hidden;
+  /* Disable overscroll history navigation */
+  touch-action: none;
+}
+
+html.fullscreen-mode #ui-container {
+  display: none;
+}
+
+html.fullscreen-mode #layout-container {
+  clip-path: inset(var(--y-clip-start) 0 var(--y-clip-end) 0);
+}
+
+html.fullscreen-mode #plugin {
+  clip-path: inset(
+    calc(var(--y-clip-start) * var(--page-scale)) 0
+      calc(var(--y-clip-end) * var(--page-scale)) 0
+  );
+}
+
+/* TODO(37810027): Reuse dark mode styles above instead of duplicating them */
+html.fullscreen-mode body {
+  background-color: #333;
+  color: #fff;
+}
+
+html.fullscreen-mode #embed-border {
+  border: 2px #787878 solid;
+}
+
+html.fullscreen-mode #layout-container .pagerect {
+  box-shadow: none;
+}
