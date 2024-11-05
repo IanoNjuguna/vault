@@ -1,22 +1,23 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
 	var num1, num2 float64
 	var operator string
 
 	fmt.Println("This is a CLI calculator")
+
 	fmt.Print("Enter the first number: ")
 	_, err := fmt.Scanln(&num1)
 	if err != nil {
 		fmt.Println("Invalid Input")
 		return
 	}
+
 	fmt.Print("Enter the Operator (+, -, / or *): ")
 	fmt.Scanln(&operator)
+
 	fmt.Print("Enter the second number: ")
 	_, err = fmt.Scanln(&num2)
 	if err != nil {
