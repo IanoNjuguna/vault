@@ -31,13 +31,9 @@ func main() {
 	case "-":
 		fmt.Printf("%.2f - %.2f = %.2f\n", num1, num2, num1-num2)
 	case "*":
-		if num1 == 0 || num2 == 0 {
-			fmt.Println("Error: Cannot multiply by zero.")
-		} else {
-			fmt.Printf("%.2f * %.2f = %.2f\n", num1, num2, num1*num2)
-		}
+		fmt.Printf("%.2f * %.2f = %.2f\n", num1, num2, num1*num2)
 	case "/":
-		if num1 == 0 || num2 == 0 {
+		if num2 == 0 {
 			fmt.Println("Error: Cannot divide by zero.")
 		} else {
 			fmt.Printf("%.2f / %.2f = %.2f\n", num1, num2, num1/num2)
