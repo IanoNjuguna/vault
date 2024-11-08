@@ -10,9 +10,12 @@ func main() {
 
 	fmt.Print("Enter the first number: ")
 	_, err := fmt.Scanln(&num1)
-	if err != nil {
-		fmt.Println("Invalid Input")
-		return
+
+	for err != nil {
+		fmt.Println("Invalid Input. This program only accepts integer and float types")
+		fmt.Print("Enter the first number: ")
+		_, err = fmt.Scanln(&num1)
+		continue
 	}
 
 	fmt.Print("Enter the Operator (+, -, / or *): ")
@@ -20,9 +23,11 @@ func main() {
 
 	fmt.Print("Enter the second number: ")
 	_, err = fmt.Scanln(&num2)
-	if err != nil {
-		fmt.Println("Invalid Input")
-		return
+	for err != nil {
+		fmt.Println("Invalid Input. This program only accepts integer and float types")
+		fmt.Print("Enter the second number: ")
+		_, err = fmt.Scanln(&num2)
+		continue
 	}
 
 	switch operator {
