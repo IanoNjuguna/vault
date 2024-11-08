@@ -12,7 +12,7 @@ func main() {
 	_, err := fmt.Scanln(&num1)
 
 	for err != nil {
-		fmt.Println("Invalid Input. This program only accepts integer and float types")
+		fmt.Println("Invalid Input. This program only accepts integer and float types.")
 		fmt.Print("Enter the first number: ")
 		_, err = fmt.Scanln(&num1)
 		continue
@@ -23,6 +23,7 @@ func main() {
 
 	fmt.Print("Enter the second number: ")
 	_, err = fmt.Scanln(&num2)
+
 	for err != nil {
 		fmt.Println("Invalid Input. This program only accepts integer and float types")
 		fmt.Print("Enter the second number: ")
