@@ -9,7 +9,9 @@ package main
  */
 
 import (
+	"bufio"
 	"fmt"
+	"strings"
 )
 
 /**
@@ -33,7 +35,9 @@ func reverse_wrd(word string) string {
 func main() {
 	var word string
 	fmt.Print("Enter the word to check: ")
-	fmt.Scanln(&word)
+
+	/// FIX
+	reader := bufio.NewScanner(strings.NewReader(word))
 
 	reversed := reverse_wrd(word)
 
