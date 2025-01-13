@@ -7,20 +7,20 @@ import (
 	"strings"
 )
 
-func find_longest_word(text string) string {
-	longest_word := ""
-	max_length := 0
+func findLongestWord(text string) string {
+	longestWord := ""
+	maxLength := 0
 
-	words := strings.Fields((text))
+	words := strings.Fields(text)
 
 	for _, word := range words {
-		if len(word) > max_length {
-			longest_word = word
-			max_length = len(word)
+		if len(word) > maxLength {
+			longestWord = word
+			maxLength = len(word)
 		}
 	}
 
-	return longest_word
+	return longestWord
 }
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 	fmt.Println("Enter a sentence or paragraph: ")
 	text, _ = reader.ReadString('\n')
 
-	longest_word := find_longest_word(text)
+	longestWord := findLongestWord(text)
 
-	fmt.Printf("The longest word is: %s\n", longest_word)
+	fmt.Printf("The longest word is: %s\n", longestWord)
 }
