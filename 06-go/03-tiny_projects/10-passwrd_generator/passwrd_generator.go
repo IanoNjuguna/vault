@@ -1,8 +1,9 @@
 package main
 
 import (
+	"crypto/rand"
 	"fmt"
-	"math/rand"
+	"math/big"
 	"time"
 )
 
@@ -14,10 +15,13 @@ func main() {
 		"0123456789" +
 		"*&^%$#@!()-`~_+=[]{};:/'\"\\?/"
 
-	rand.New(rand.NewSource(time.Now().UnixNano()))
+	rand.Int(rand.Reader, big.NewInt(time.Now().UnixNano()))
 
 	for i := 0; i < passwordLength; i++ {
-		character := pool[rand.Intn(len(pool))]
+		// Cast to type int64 (reduce unintended behaviour)
+		var lenPool int64 = int64(len(pool))
+		randomNum, _ := rand.Int(rand.Reader, big.NewInt(lenPool))
+		character := pool[int64(randomNum.Int64())]
 		password += string(character)
 	}
 
