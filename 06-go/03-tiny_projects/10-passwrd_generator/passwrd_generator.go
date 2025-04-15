@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"math/big"
 	"time"
+	"os"
+	"strconv"
 )
 
 func main() {
-	passwordLength := 12
+	var passwordLength int
 	var password string
 	const pool = "ABCDEFGHIJKLMNOPQRSTUVXYZ" +
 		"abcdefghijklmnopqrstuvwxyz" +
@@ -16,6 +18,15 @@ func main() {
 		"*&^%$#@!()-`~_+=[]{};:/'\"\\?/"
 
 	rand.Int(rand.Reader, big.NewInt(time.Now().UnixNano()))
+
+	while (os.Args) {
+		passwordLength, err := strconv.Atoi((os.Args[1]))
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+	}
+	passwordLength := 12
 
 	for i := 0; i < passwordLength; i++ {
 		// Cast to type int64 (reduce unintended behaviour)
