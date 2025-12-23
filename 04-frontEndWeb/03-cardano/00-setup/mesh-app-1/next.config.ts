@@ -1,12 +1,22 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+import type { Configuration } from "webpack";
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
-  webpack: function (config, options) {
+  
+  // 1. Resolve the "Does not provide an export" error
+  transpilePackages: ['@fabianbormann/cardano-peer-connect'],
+
+  // 2. Properly typed Webpack function
+  webpack: (config: Configuration) => {
     config.experiments = {
+      ...config.experiments,
       asyncWebAssembly: true,
       layers: true,
     };
+
     return config;
   },
 };
-module.exports = nextConfig;
+
+export default nextConfig;
