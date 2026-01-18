@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
   // 1. Resolve the "Does not provide an export" error
   transpilePackages: ['@fabianbormann/cardano-peer-connect'],
 
-  // 2. Properly typed Webpack function
+  // 2. Properly typed Turbopack & Webpack function
+  turbopack: {},
   webpack: (config: Configuration) => {
     config.experiments = {
       ...config.experiments,
