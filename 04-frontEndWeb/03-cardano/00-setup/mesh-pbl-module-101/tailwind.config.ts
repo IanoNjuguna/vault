@@ -1,22 +1,18 @@
-import type { NextConfig } from "next";
-import type { Configuration } from "webpack";
+import type { Config } from "tailwindcss";
 
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  
-  // 1. Resolve the "Does not provide an export" error
-  transpilePackages: ['@fabianbormann/cardano-peer-connect'],
-
-  // 2. Properly typed Webpack function
-  webpack: (config: Configuration) => {
-    config.experiments = {
-      ...config.experiments,
-      asyncWebAssembly: true,
-      layers: true,
-    };
-
-    return config;
+export default {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+      },
+    },
   },
-};
-
-export default nextConfig;
+  plugins: [],
+} satisfies Config;
