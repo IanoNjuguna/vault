@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <h1>Connect Wallet</h1>
+      <h1>Click this button to connect your wallet</h1>
       <CardanoWallet />
       {connected && (
         <>
